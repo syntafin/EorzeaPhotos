@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name', 512)->nullable();
             $table->string('key', 32)->unique()->index();
+            $table->string('blurhash', 64)->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('is_public')->default(true);
+            $table->boolean('is_nsfw')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('body');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('image_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('parent_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('comment_id')->nullable()->constrained('comments')->cascadeOnDelete();
             $table->boolean('is_public')->default(true);
             $table->timestamps();
             $table->softDeletes();
