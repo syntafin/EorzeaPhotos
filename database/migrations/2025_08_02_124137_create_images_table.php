@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 512)->nullable();
+            $table->string('key', 32)->unique()->index();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->boolean('is_public')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

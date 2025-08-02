@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->text('body');
+        Schema::create('image_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('image_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('parent_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->boolean('is_public')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('image_user');
     }
 };

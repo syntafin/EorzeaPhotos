@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->string('filename', 512);
+            $table->string('mimetype', 128);
+            $table->string('extension', 128);
+            $table->foreignId('image_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->boolean('is_public')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
